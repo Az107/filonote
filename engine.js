@@ -56,8 +56,13 @@ app.controller("principal",($scope)=>{
 		winestate = !winestate;
 	}
 	function eliminar(fun_id){
+		$("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
+			
+			$scope.stack_notes.splice(fun_id,1);
+			$("#container_"+fun_id).remove();
 
-		$scope.stack_notes.splice(fun_id,1);
+		}});
+
 }
                                 
 	$scope.add = add;	

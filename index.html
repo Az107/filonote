@@ -22,8 +22,10 @@
 			<button  id="añadir" ng-click="mostrar();"> añadir </button><br><br>
 
 			<div class="apto" id="dragin-space" >
-				<div ng-repeat="notes in stack_notes" class="card"><a ng-click="eliminar($index);" class="closebtn">X</a><div class="title">{{notes.title}}</div>{{notes.content}}</div>
-
+				<div ng-repeat="notes in stack_notes" id="container_{{$index}}">
+					<div  id="note_{{$index}}" class="card"><a ng-click="eliminar($index);" class="closebtn">X</a><div class="title">{{notes.title}}</div>{{notes.content}}</div>
+				</div>
+ 
 			</div>
 
 		<div class="message" >	
