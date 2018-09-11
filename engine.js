@@ -17,6 +17,7 @@ app.controller("principal",($scope)=>{
 		if (fun_content != "" || fun_title == ""){
 			now_note = note_maker(fun_title,fun_content)
 			$scope.stack_notes.push(now_note);
+			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
 		}
 
 		$("#menu_title").val("")
@@ -58,9 +59,10 @@ app.controller("principal",($scope)=>{
 	function eliminar(fun_id){
 		$("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
 			
+			//$("#container_"+fun_id).remove();
 			$scope.stack_notes.splice(fun_id,1);
-			$("#container_"+fun_id).remove();
-
+			$scope.$apply();
+			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
 		}});
 
 }
@@ -71,7 +73,23 @@ app.controller("principal",($scope)=>{
 	$scope.stack_notes = [];
 	$scope.title = "FILONOTE";
 	$scope.$watch("stack_notes",(newVal)=>{
+		console.log("lista cambiada");
 		$scope.stack_notes = newVal;
+		$scope.$apply();
+		localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
 	});
+
+	var init = function(){
+		let saved = localStorage.getItem("notes");
+		if (saved == null){
+			let nota1 = note_maker("Bienvenido","Bienvenido a filonote la webapp de notas offline")
+			let nota2 = note_maker("Empezemos","prueba a eliminar estas notas o crear una nueva con el boton añadir")
+			$scope.stack_notes.push(nota1);
+			$scope.stack_notes.push(nota2);
+		}else{
+			$scope.stack_notes = JSON.parse(saved);
+		}
+	}
+	init();
 	
 });

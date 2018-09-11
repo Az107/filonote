@@ -221,8 +221,12 @@ button{
 textarea{
 	height: 57%; 
 }
+#dragin-space{
+	left: 20%
+}
 .card{
 	margin-top: 10%;
+	width: 100%;
 }
 .message .card{
 	margin-top: 0;
