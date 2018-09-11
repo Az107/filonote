@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>FILONOTE</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="engine.js"></script>
+</head>
+<body>
+	
+	<div ng-app="ang_filonote">
+		
+		<div ng-controller="principal">
+		
+			<h1 class="apto">{{title}} </h1>
+			<h3 class="apto" id="notize">¡ahora con angular!</h3>
+	
+			<button  id="añadir" ng-click="mostrar();"> añadir </button><br><br>
+
+			<div class="apto" id="dragin-space" >
+				<div ng-repeat="notes in stack_notes" class="card"><a ng-click="eliminar($index);" class="closebtn">X</a><div class="title">{{notes.title}}</div>{{notes.content}}</div>
+
+			</div>
+
+		<div class="message" >	
+			<div class="card">
+				
+				<div class="title">añadir nota</div>
+					<input type="text" id="menu_title" ng-model="str_title" placeholder="titulo"><br><br>
+
+					<textarea ng-model="str_content" id="menu_content"></textarea><br>
+					<button ng-click="add();">añadir</button>
+				</div>
+			</div>	
+	</div>
+		</div>
+	</div>
+</body>
+</html>
