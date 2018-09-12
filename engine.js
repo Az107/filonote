@@ -1,11 +1,14 @@
 
 const app = angular.module("ang_filonote",[]);
 var winestate = false;
+var id = 0;
 function note_maker(obj_title,obj_content){
 		var note = {
 			title: obj_title, 
-			content: obj_content
+			content: obj_content,
+			id: id
 		};
+		id++;
 		return note;
 }
 app.controller("principal",($scope)=>{
@@ -33,6 +36,7 @@ app.controller("principal",($scope)=>{
 		winestate = false;
 	}
 	function mostrar(){
+		console.log($scope.stack_notes);
 		if (winestate){
 			$("body").css("overflow","auto");
 			$("#añadir").css("top","auto");
@@ -72,12 +76,6 @@ app.controller("principal",($scope)=>{
 	$scope.eliminar = eliminar;	
 	$scope.stack_notes = [];
 	$scope.title = "FILONOTE";
-	$scope.$watch("stack_notes",(newVal)=>{
-		console.log("lista cambiada");
-		$scope.stack_notes = newVal;
-		$scope.$apply();
-		localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
-	});
 
 	var init = function(){
 		let saved = localStorage.getItem("notes");
@@ -88,6 +86,8 @@ app.controller("principal",($scope)=>{
 			$scope.stack_notes.push(nota2);
 		}else{
 			$scope.stack_notes = JSON.parse(saved);
+			console.log($scope.stack_notes);
+			id = $scope.stack_notes.length;
 		}
 	}
 	init();
