@@ -15,55 +15,35 @@ app.controller("principal",($scope)=>{
 	
 	//functions
 	function add() {
-		fun_title = $scope.str_title;
-		fun_content = $scope.str_content;
+		let fun_title = $scope.str_title;
+		let fun_content = $scope.str_content;
 		if (fun_content != "" || fun_title == ""){
-			now_note = note_maker(fun_title,fun_content)
+			let now_note = note_maker(fun_title,fun_content)
 			$scope.stack_notes.push(now_note);
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
 		}
 
-		$("#menu_title").val("")
-		$("#menu_content").val("")
-		$(".message").css("display","none");
-		$("#añadir").text("añadir");
-		$("#añadir").css("z-index","1");
-		$("body").css("overflow","auto");
-		$("#añadir").css("top","auto");
-		$("#añadir").css("position","relative");
-		$(".apto").removeClass("NYB1");
-		$(".apto").removeClass("NYB2");
-		winestate = false;
+		show();
 	}
-	function mostrar(){
+
+	function show(){
 		console.log($scope.stack_notes);
 		if (winestate){
-			$("body").css("overflow","auto");
-			$("#añadir").css("top","auto");
-			$("#añadir").text("añadir");
-			$("#añadir").css("z-index","1");	
-			$("#añadir").css("position","relative");
-			$(".apto").removeClass("NYB1");
-			$(".apto").removeClass("NYB2");				
-			$(".message").css("display","none");
+			$("#add").text = "Close";
+			$("#win").addClass("invisible");
 
 		}else{
-			$(".apto").addClass("NYB1");
-			$(".apto").addClass("NYB2");
-			$("#añadir").css("top","10%");
-			$(".message").css("display","auto");
-			$("body").css("overflow","hidden")
-			$("#añadir").text("cerrar");
-			$("#añadir").css("position","fixed");
-			$("#añadir").css("z-index","1000");
-			$(".message").css("display","block");
+			$("#add").text = "Add";
+			$("#win").removeClass("invisible");
+
+
+
 		}
 		winestate = !winestate;
 	}
 	function eliminar(fun_id){
 		$("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
 			
-			//$("#container_"+fun_id).remove();
 			$scope.stack_notes.splice(fun_id,1);
 			$scope.$apply();
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
@@ -72,7 +52,7 @@ app.controller("principal",($scope)=>{
 }
                                 
 	$scope.add = add;	
-	$scope.mostrar = mostrar;
+	$scope.show = show;
 	$scope.eliminar = eliminar;	
 	$scope.stack_notes = [];
 	$scope.title = "FILONOTE";
