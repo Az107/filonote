@@ -22,11 +22,7 @@ app.controller("principal",($scope)=>{
 			$scope.stack_notes.push(now_note);
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
 			console.log("added note " + now_note.id);
-			$("#note_" + now_note.id).addClass("animate-pulse");
-			// setTimeout(() => {
-			// 	$("#note_" + now_note.id).removeClass("animate-pulse");
 
-			// }, 5000);
 		}
 		
 		show();
@@ -48,18 +44,12 @@ app.controller("principal",($scope)=>{
 		winestate = !winestate;
 	}
 	function eliminar(fun_id){
-		$("#note_" + fun_id).addClass("animate-ping");
-		setTimeout(() => {
+		$("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
+			
 			$scope.stack_notes.splice(fun_id,1);
 			$scope.$apply();
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
-		}, 1000);
-		// $("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
-			
-		// 	$scope.stack_notes.splice(fun_id,1);
-		// 	$scope.$apply();
-		// 	localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
-		// }});
+		}});
 
 }
                                 
