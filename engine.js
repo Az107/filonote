@@ -21,8 +21,14 @@ app.controller("principal",($scope)=>{
 			let now_note = note_maker(fun_title,fun_content)
 			$scope.stack_notes.push(now_note);
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
-		}
+			console.log("added note " + now_note.id);
+			$("#note_" + now_note.id).addClass("animate-pulse");
+			// setTimeout(() => {
+			// 	$("#note_" + now_note.id).removeClass("animate-pulse");
 
+			// }, 5000);
+		}
+		
 		show();
 	}
 
@@ -42,12 +48,18 @@ app.controller("principal",($scope)=>{
 		winestate = !winestate;
 	}
 	function eliminar(fun_id){
-		$("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
-			
+		$("#note_" + fun_id).addClass("animate-ping");
+		setTimeout(() => {
 			$scope.stack_notes.splice(fun_id,1);
 			$scope.$apply();
 			localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
-		}});
+		}, 1000);
+		// $("#note_" + fun_id).animate({width:"0%",height:"0%"},{duration:500,complete:()=>{
+			
+		// 	$scope.stack_notes.splice(fun_id,1);
+		// 	$scope.$apply();
+		// 	localStorage.setItem("notes",JSON.stringify($scope.stack_notes));
+		// }});
 
 }
                                 
@@ -60,8 +72,8 @@ app.controller("principal",($scope)=>{
 	var init = function(){
 		let saved = localStorage.getItem("notes");
 		if (saved == null){
-			let nota1 = note_maker("Bienvenido","Bienvenido a filonote la webapp de notas offline")
-			let nota2 = note_maker("Empezemos","prueba a eliminar estas notas o crear una nueva con el boton añadir")
+			let nota1 = note_maker("Wellcome","Wellcome to filonote the webapp to take notes offline")
+			let nota2 = note_maker("Let´s start","try to delete this notes o make a new one with the 'add' button ")
 			$scope.stack_notes.push(nota1);
 			$scope.stack_notes.push(nota2);
 		}else{

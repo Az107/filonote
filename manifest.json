@@ -1,0 +1,18 @@
+{
+    "dir": "ltr",
+    "lang": "English",
+    "name": "FILONOTE",
+    "short_name": "FILONOTE",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "https://filonote.netlify.app/",
+    "background_color": "#ffffff",
+    "theme_color": "transparent",
+    "description": "Small app to take notes",
+    "orientation": "any",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [],
+    "url": "https://filonote.netlify.app/",
+    "screenshots": []
+}
