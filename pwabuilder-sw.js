@@ -35,7 +35,7 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
-  fetchEvent.respondWith(
+  event.respondWith(
     caches.match(fetchEvent.request).then(res => {
       return res || fetch(fetchEvent.request);
     })
