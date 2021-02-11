@@ -12,13 +12,15 @@ self.addEventListener("message", (event) => {
   }
 });
 
+
 const assets = [
-  "/", 
-  "index.html",
-  "Scripts/engine.js",
-  "Scripts/angular.min.js",
-  "Scripts/jquery-3.5.1.min.js",
-  "Styles/tailwind.min.css"
+  "./", 
+  "./index.html",
+  "./Scripts/engine.js",
+  "./Scripts/angular.min.js",
+  "./Scripts/jquery-3.5.1.min.js",
+  "./Styles/tailwind.min.css"
+
 ];
 
 self.addEventListener('install', async (event) => {
@@ -33,23 +35,9 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
-
-        if (preloadResp) {
-          return preloadResp;
-        }
-
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
-
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      }
-    })());
-  }
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then(res => {
+      return res || fetch(fetchEvent.request);
+    })
+  );
 });
