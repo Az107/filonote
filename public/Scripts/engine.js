@@ -2,6 +2,22 @@
 const app = angular.module("ang_filonote",[]);
 var winestate = false;
 var id = 0;
+var apiConnection = false;
+
+
+function checkApi(){
+	fetch("./api/check").then((res)=>{
+		if(res.ok){
+			res.text().then((resText) =>{
+				apiConnection = true;
+				console.log(resText);
+			})
+		}else{
+			console.log("api unreachable ❌");
+		}
+	})
+}
+
 function note_maker(obj_title,obj_content){
 		var note = {
 			title: obj_title, 
@@ -75,3 +91,5 @@ app.controller("principal",($scope)=>{
 	init();
 	
 });
+
+checkApi();

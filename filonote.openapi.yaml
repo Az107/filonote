@@ -1,0 +1,26 @@
+openapi: '3.0.2'
+info:
+  title: filonoteAPI
+  version: '1.0'
+servers:
+  - url: https://filonote.netlify.app/api/
+paths:
+  /saveNotes:
+    post:
+      description: save notes in database
+      responses:
+        '200':
+          description: OK
+
+  /getNotes:
+    get:
+      description: check api connection
+      responses:
+        '200':
+          description: OK
+  /check:
+    post:
+      description: Get saved notes in database
+      responses:
+        '200':
+          description: OK
