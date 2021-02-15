@@ -17,7 +17,7 @@ function getToken(user,pass){
                         Token: resText
                     }
                     localStorage.setItem("user",JSON.stringify(userOb));
-                    location.href = "/";
+                    location.replace("/")
                     status = true;
                 });
 
