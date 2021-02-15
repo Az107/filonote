@@ -77,13 +77,12 @@ app.controller("principal",($scope)=>{
 	$scope.show = show;
 	$scope.eliminar = eliminar;	
 	$scope.stack_notes = [];
-	$scope.title = "FILONOTE";
 
 	var init = function(){
 		let user = localStorage.getItem("user");
 		let saved = localStorage.getItem("notes");
 		if (user == null && apiConnection){
-			window.location.replace("./login");
+			window.location.href = "/login";
 
 		}else{
 			if (saved == null){
