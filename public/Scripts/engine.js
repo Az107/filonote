@@ -3,6 +3,10 @@ const app = angular.module("ang_filonote",[]);
 var winestate = false;
 var id = 0;
 var apiConnection = false;
+var user = {
+	name: "",
+	tokken: ""
+}
 
 
 function checkApi(){
@@ -76,16 +80,22 @@ app.controller("principal",($scope)=>{
 	$scope.title = "FILONOTE";
 
 	var init = function(){
+		let user = localStorage.getItem("user");
 		let saved = localStorage.getItem("notes");
-		if (saved == null){
-			let nota1 = note_maker("Wellcome","Wellcome to filonote the webapp to take notes offline")
-			let nota2 = note_maker("Let´s start","try to delete this notes o make a new one with the 'add' button ")
-			$scope.stack_notes.push(nota1);
-			$scope.stack_notes.push(nota2);
+		if (user == null && apiConnection){
+			window.location.replace("./login");
+
 		}else{
-			$scope.stack_notes = JSON.parse(saved);
-			console.log($scope.stack_notes);
-			id = $scope.stack_notes.length;
+			if (saved == null){
+				let nota1 = note_maker("Wellcome","Wellcome to filonote the webapp to take notes offline")
+				let nota2 = note_maker("Let´s start","try to delete this notes o make a new one with the 'add' button ")
+				$scope.stack_notes.push(nota1);
+				$scope.stack_notes.push(nota2);
+			}else{
+				$scope.stack_notes = JSON.parse(saved);
+				console.log($scope.stack_notes);
+				id = $scope.stack_notes.length;
+			}
 		}
 	}
 	init();
