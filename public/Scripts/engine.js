@@ -82,8 +82,7 @@ app.controller("principal",($scope)=>{
 		let user = localStorage.getItem("user");
 		let saved = localStorage.getItem("notes");
 		if (user == null && apiConnection){
-			window.location.href = "/login";
-
+			location.href = "/login";
 		}else{
 			if (saved == null){
 				let nota1 = note_maker("Wellcome","Wellcome to filonote the webapp to take notes offline")
