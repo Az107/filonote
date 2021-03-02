@@ -1,7 +1,7 @@
 
 const {MongoClient} = require("mongodb");
 const md5 = require('md5');
-const uri = "mongodb+srv://wpa:xJEbPEScFm298d2S@cluster0.6lw0m.mongodb.net/Filonote?retryWrites=true&w=majority"; // TODO: tokenize 
+const uri = process.env.MONGOURI; // TODO: tokenize 
 const client = MongoClient(uri);
 
 function genToken(user){
