@@ -1,7 +1,7 @@
 
 const {MongoClient} = require("mongodb");
 const md5 = require('md5');
-const uri = process.env.MONGOURI; // TODO: tokenize 
+const uri = process.env.MONGOURI;
 const client = MongoClient(uri);
 
 function genToken(user){
@@ -16,6 +16,7 @@ exports.handler = async (req) => {
         statusCode: 401,
         body: "unautorized"
     }
+
     await client.connect();
     let database = client.db('Filonote');
     let users = database.collection('User');
