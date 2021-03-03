@@ -6,7 +6,14 @@ const client = MongoClient(uri);
 function genToken(user){
     let token =  user.Name + "" + Math.trunc(Math.random() * 100) + Date.now();
     token = md5(token);
-    return token;
+    let d = new Date();
+    var tokenObject = {
+        userId: user._id,
+        token: token,
+        createdAt: d,
+        expireAt: new Date(d.getFullYear(),(d.getMonth() + 1),d.getDate())
+    }
+    return tokenObject;
 }
 
 
@@ -15,11 +22,11 @@ exports.handler = async (req) => {
     let database = client.db('Filonote');
     let users = database.collection('User');
     let notes = database.collection('Notes');
+    let tokens = database.collection("Tokens");
     let args = JSON.parse(req.body);
     let user = {
         Name: args.user,
-        Password: md5(args.pass),
-        Tokens: []
+        Password: md5(args.pass)
     }
     let unotes = {
         userName: args.user,
@@ -27,9 +34,9 @@ exports.handler = async (req) => {
     }
     
     let token = genToken(user);
-    user.Tokens.push(token);
     await users.insertOne(user);
     await notes.insertOne(unotes);
+    await tokens.insertOne(token);
 
 
     return {
