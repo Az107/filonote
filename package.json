@@ -1,0 +1,15 @@
+{
+  "name": "filonote.next",
+  "version": "1.0.0",
+  "description": "filonote next generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alb Ruiz",
+  "license": "MIT",
+  "dependencies": {
+    "md5": "^2.3.0",
+    "mongo": "^0.1.0"
+  }
+}
