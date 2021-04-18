@@ -4,7 +4,7 @@
   "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/4859ac56-fb4a-4a60-8cad-42a20018b48d/deploy-status)](https://app.netlify.com/sites/filonote/deploys)\r ## a static web page to take notes",
   "main": "pwabuilder-sw.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "netlify dev"
   },
   "repository": {
     "type": "git",
