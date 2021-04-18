@@ -1,11 +1,18 @@
-console.log("welcome")
+async function  getTemplate(name){
 
-var template = Handlebars.compile(document.getElementById('note-template').innerHTML);
-function render() {
-    document.getElementById("card-zone").innerHTML = template({ doesWhat: "rocks!" });
+}
+
+
+
+function render(template, data) {
+    templateRaw = fetch(template).then(res => res.text()).then(text => {
+        let template = Handlebars.compile(text);
+        
+        document.getElementById("card-zone").innerHTML = template(data);
+    })
     
 }
 
 function onLoad(){
-    render();
+    render("Templates/note.hbs",{title:"titulo",content:"hola"});
 }
