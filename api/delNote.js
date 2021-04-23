@@ -19,7 +19,7 @@ exports.handler = async (req) => {
     let Token = await tokens.findOne({token: args.Token});
     console.log(args.Token);
     args.Notes.forEach(note => {
-        notes.updateOne({userId: Token.userId},{$push: {Notes: note}});
+        notes.updateOne({userId: Token.userId},{$pull: {Notes: note}});
     });
 
 

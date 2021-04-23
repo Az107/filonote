@@ -15,8 +15,6 @@ exports.handler = async (req) => {
     let tokens = await database.collection('Tokens');
     let notes = await database.collection("Notes");
     var args = JSON.parse(req.body);
-    console.log(args.Token);
-
     let Token = await tokens.findOne({token: args.Token});
     let retrivedNotes = await notes.findOne({userId: Token.userId});
     res.body = JSON.stringify(retrivedNotes);
