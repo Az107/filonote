@@ -14,7 +14,6 @@ h1,h2,h3{
 	width: 100%;
 }
 #app-header{
-	position: fixed;
 	width: 96%;
 	margin: 2%;
 }
@@ -43,9 +42,11 @@ h1,h2,h3{
 
 #card-zone{
 	display: flex;
-	margin: 5%;
-	margin-top: 20%;
-	align-items: center;
+	margin: 2%;
+	flex-wrap: wrap;
+	flex-direction: row;
+	height: 90%;
+	width: 100%;
 }
 
 
@@ -60,10 +61,6 @@ h1,h2,h3{
 	background-color: white;
 	border-radius: 5px;
 	border: solid 1px #2980b9;
-}
-
-.content{
-	margin: 5%;
 }
 
 button{
@@ -101,181 +98,95 @@ button:hover{
 
 }
 
-#dragin-space{
-	padding: none;
-	margin: 5px;
-	z-index: 1;
-	display: grid;
 
-	grid-row-gap: 50px;
-	grid-template-columns: auto auto auto ;
-
-}
-
-.card{
+.card {
+	margin: 2%;
+	flex-shrink: 0;
+	border: solid 2px #148ddd;
 	border-radius: 5px;
-	width: 70%;
-	max-width: 100%;
 	word-wrap: break-word;
-	height: auto;
+	height: 10%;
+	width: 40%;
 	background-color: white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	text-align: center;
-	padding-bottom: 5px;
-	margin: none;
 	-webkit-transition: width 2s ease , height 2s ease;; 
     transition: width 2s ease , height 2s ease;
     -webkit-transition: top 0.75s ease, left 0.75s ease;
     transition: top 0.75s ease, left 0.75s ease;
     transition-delay: 0.5s;
 }
+.card:hover  {
+	text-align: start;
+}
+
+.card:hover > .title {
+	display: none;
+}
+
+.card:hover > .content {
+	display: block;
+}
+
 .card .title{
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
 	font-size: 200%;
-	height: 60%;
-	background-color: #2980b9;
-	background-image: linear-gradient(to right, #2c76a8 , #148ddd);
-	color: white;
+	/* background-image: linear-gradient(to right, #2c76a8 , #148ddd); */
+	color: #148ddd;
 	padding: 5px;
-	border: none;
-	margin-top: none;
-	margin-bottom: 5%;
 	-webkit-transition: height 1s ease;; 
     transition: height 1s ease;
     transition-delay: 0.75s;
+	margin: 5%;
 
 }
 .card .content{
-	margin: 5px;
-	margin-bottom: 10px;
-	padding: 5px;
-	padding-bottom: 10px;
+	font-size: 100%;
+	display: none;
+	padding: 10px;
+	margin: 5%;
 }
 
 
 
-input{
-	border: none;
-	width: 85%;
-	border-left: solid 5px #2980b9;
-	font-size: 250%;
-	margin-left: none;
-	
-
-}
-input:focus{
-	border: solid 1px grey;
-	border-left: solid 5px #34ace0;
-}
-textarea{
-
-	border: none;
-	height: 400px;
-	width: 85%;
-	border-left: solid 5px #2980b9;
-	font-size: 125%;
-	margin-left: none;
-	resize: none;	
-	
-}
-textarea:focus{
-
-	border: solid 1px grey;
-	border-left: solid 5px #34ace0 ;
-}
-
-
-
-
-@media only screen and (max-width: 1000px) {
-
-	textarea{
-	height: 50%; 
-}
-	
-	#window{
-		height: 65%;
-		position: fixed;
-		z-index: 200;
-		-webkit-transition: width 1s linear;
-		-webkit-transition: height 1s linear;
-		transition: width 1s linear;
-		transition: height 1s linear;
-
-}
-	.message .card .title{
-	height: 10%;
-}
-	#dragin-space{
-
-	grid-template-columns: auto auto ;
-
-}
-
-
-
-
-}
 @media only screen and (max-width: 600px) {
-#app-header{
-	position: absolut;
+	#app-header{
+		position: absolut;
+	}
+	button{
+		width: 50%;
+		display: block;
+		text-align: center;
+		-webkit-transition: width 1s ease;
+		transition: width 1s ease;
+		margin-bottom: 5%;
+	}
 
-}
-button{
-	width: 50%;
-	display: block;
-	text-align: center;
-    -webkit-transition: width 1s ease;
-    transition: width 1s ease;
-	margin-bottom: 5%;
-}
+	.right {
+		position: relative;
+	}
+	.add-button::before {
+		text-align: left;
+		content: 'new note ';
 
-.right {
-	position: relative;
-}
-.add-button::before {
-	text-align: left;
-	content: 'new note ';
-
-}
-.close-btn{
-	display: inline;
-	width: 20%;
-
-
-}
-textarea{
-	height: 57%; 
-}
-#dragin-space{
-	left: 20%
-}
-.card{
-	margin-top: 10%;
-	width: 100%;
-}
-#window{
-	margin: 0;
-	margin-top: 30%;
-	top: 0%;
-	left: 0%;
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	z-index: 200;
-    transition: width 1s linear;
-    transition: height 1s linear;    
-	-webkit-transition: width 1s linear;
-    -webkit-transition: height 1s linear;
+	}
+	.close-btn{
+		display: inline;
+		width: 20%;
 
 
+	}
+	.card{
+		width: 90%;
+		height: 20%;
+	}
 
-}
-
-
+	#card-zone{
+		display: flex;
+		margin: 2%;
+		margin-top: 20%;
+		padding: 2%;
+		flex-wrap: wrap;
+		flex-direction: row;
+		width: 100%;
+	}
 }
